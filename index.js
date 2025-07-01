@@ -15,7 +15,8 @@ const server = createServer((req, res) => {
   {
     res.write('Salut Catalina.');
   }
-    res.write('Hello world');
+res.write('This does nothing without route point!!!');
+
     res.end();
 });
 

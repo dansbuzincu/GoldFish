@@ -13,11 +13,12 @@ const server = createServer((req, res) => {
 
   if(url === '/task')
   {
-    res.write('Salut Catalina.');
-  }
-res.write('This does nothing without route point!!!');
+  res.write('Salut Catalina.');
+  res.end();
 
-    res.end();
+  }
+  res.write('This does nothing without route point!!!');
+  res.end();
 });
 
 server.listen(port, everyone, () => {

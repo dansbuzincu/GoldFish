@@ -13,7 +13,7 @@ const server = createServer((req, res) => {
 
   if(url === '/task')
   {
-    res.write('This is gonna send the text inputed at some point');
+    res.write('Salut Catalina.');
   }
     res.write('Hello world');
     res.end();

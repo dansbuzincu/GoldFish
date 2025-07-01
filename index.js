@@ -15,10 +15,7 @@ const server = createServer((req, res) => {
   {
     res.write('This is gonna send the text inputed at some point');
   }
-  else
-  {
     res.write('Hello world');
-  }
     res.end();
 });
 

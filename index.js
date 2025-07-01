@@ -12,6 +12,6 @@ const server = createServer((req, res) => {
   res.end('Hello World');
 });
 
-server.listen(port, everyone, () => {
+server.listen(PORT, everyone, () => {
   console.log(`Server running at http://${everyone}:${port}/`);
 });

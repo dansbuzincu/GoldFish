@@ -9,7 +9,17 @@ const everyone = '0.0.0.0';
 const server = createServer((req, res) => {
   res.statusCode = 200;
   res.setHeader('Content-Type', 'text/plain');
-  res.end('Hello World');
+  const url = req.url;
+
+  if(url === '/task')
+  {
+    res.write('This is gonna send the text inputed at some point');
+  }
+  else
+  {
+    res.write('Hello world');
+  }
+    res.end();
 });
 
 server.listen(port, everyone, () => {

@@ -1,7 +1,6 @@
 import { createServer } from "node:http";
 import mqtt from 'mqtt';
 
-
 const everyone = '0.0.0.0';
 const port = process.env.PORT || 3000;
 
@@ -11,11 +10,16 @@ let nextId = 1;
 const mqtt_url = "16c41548cba463dac9e11bcd23e57c5.s1.eu.hivemq.cloud";
 const mqtt_port = 8883;
 const mqtt_hostname = "mqtts://" + mqtt_url + ":" + mqtt_port;
+const mqtt_topic_task = "task/new";
+
+console.log("Connecting to mqtt client!");
 const mqtt_client = mqtt.connect(mqtt_hostname, 
 {
   username: "Goldfish",
   password: "Goldfish13"
 });
+
+
 
 const server = createServer((req, res) => {
   const url = req.url;
@@ -36,8 +40,16 @@ const server = createServer((req, res) => {
           return;
         }
         const item = { id: nextId++, text, ts: Date.now() };
+
+        console.log("Publishing to mqtt client the text : ", text);
         tasks.push(item);
-        mqtt_client.publish('task/new', item.text);
+        mqtt_client.publish('task/new', text, {qos : 1}, (err) => {
+          if(err) {
+            console.error("Publish failed:", err);
+          } else {
+            console.log("Publish ACK by mqtt broker!");
+          }
+        });
 
         res.statusCode = 201;
         res.setHeader('Content-Type', 'application/json');

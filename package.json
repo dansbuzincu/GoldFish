@@ -17,5 +17,8 @@
     "url": "https://github.com/dansbuzincu/GoldFish/issues"
   },
   "homepage": "https://github.com/dansbuzincu/GoldFish#readme",
-  "description": ""
+  "description": "",
+  "dependencies": {
+    "mqtt": "^5.14.0"
+  }
 }

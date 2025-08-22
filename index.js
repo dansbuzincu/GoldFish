@@ -1,10 +1,21 @@
 const { createServer } = require('node:http');
+import mqtt from 'mqtt';
+
 
 const everyone = '0.0.0.0';
 const port = process.env.PORT || 3000;
 
 const tasks = [];
 let nextId = 1;
+
+const mqtt_url = "16c41548cba463dac9e11bcd23e57c5.s1.eu.hivemq.cloud";
+const mqtt_port = 8883;
+const mqtt_hostname = "mqtts://" + mqtt_url + ":" + mqtt_port;
+const mqtt_client = mqtt.connect(mqtt_hostname, 
+{
+  username: "Goldfish",
+  password: "Goldfish13"
+});
 
 const server = createServer((req, res) => {
   const url = req.url;
@@ -26,6 +37,7 @@ const server = createServer((req, res) => {
         }
         const item = { id: nextId++, text, ts: Date.now() };
         tasks.push(item);
+        client.publish('task/new', item.text);
 
         res.statusCode = 201;
         res.setHeader('Content-Type', 'application/json');

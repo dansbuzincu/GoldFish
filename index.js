@@ -37,7 +37,7 @@ const server = createServer((req, res) => {
         }
         const item = { id: nextId++, text, ts: Date.now() };
         tasks.push(item);
-        client.publish('task/new', item.text);
+        mqtt_client.publish('task/new', item.text);
 
         res.statusCode = 201;
         res.setHeader('Content-Type', 'application/json');

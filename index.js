@@ -7,7 +7,7 @@ const port = process.env.PORT || 3000;
 const tasks = [];
 let nextId = 1;
 
-const mqtt_url = "16c41548cba463dac9e11bcd23e57c5.s1.eu.hivemq.cloud";
+const mqtt_url = "216c41548cba463dac9e11bcd23e57c5.s1.eu.hivemq.cloud";
 const mqtt_port = 8883;
 const mqtt_hostname = "mqtts://" + mqtt_url + ":" + mqtt_port;
 const mqtt_topic_task = "task/new";
